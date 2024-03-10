@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="grund.css">
   <style type="text/css">
       .dish {
@@ -40,6 +42,34 @@
         text-decoration: none;
         font-size: 18px;
     }
+
+    .question-box {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        padding: 10px;
+        border-radius: 5px;
+        transition: opacity 0.5s ease;
+    }
+    .question-box.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .question-box p {
+        color: #155724;
+        font-weight: bold;
+    }
+    .question-box input[type="text"] {
+        border: 1px solid #28a745;
+        border-radius: 3px;
+    }
+    .question-box button {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
   </style>
 </head>
 <body>
@@ -110,7 +140,25 @@
         <p style="margin-top: 20px; color: green;">© 2024 Ugglans Matsedel | Skapad av [Neo Carlsson]</p>
     </center>
 
+<div id="question-box" class="question-box">
+    <p>Önska en maträtt!?</p>
+    <input id="answer" type="text" class="form-control" placeholder="Skriv ditt svar här">
+    <button onclick="sendEmail()" class="btn btn-primary mt-2"><i class="fas fa-paper-plane"></i> Skicka</button>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function sendEmail() {
+        var answer = document.getElementById("answer").value;
+        var subject = "Önskad maträtt";
+        var body = "Jag önskar följande maträtt: " + answer;
+        window.location.href = "mailto:exempel@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        document.getElementById("question-box").classList.add("hidden");
+    }
+</script>
 </body>
 </html>
