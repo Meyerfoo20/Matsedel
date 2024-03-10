@@ -70,6 +70,14 @@
         border-color: #28a745;
     }
 
+    .close-icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        color: #155724;
+    }
+
   </style>
 </head>
 <body>
@@ -141,6 +149,7 @@
     </center>
 
 <div id="question-box" class="question-box">
+    <i class="fas fa-times close-icon" onclick="closeQuestionBox()"></i>
     <p>Önska en maträtt!?</p>
     <input id="answer" type="text" class="form-control" placeholder="Skriv ditt svar här">
     <button onclick="sendEmail()" class="btn btn-primary mt-2"><i class="fas fa-paper-plane"></i> Skicka</button>
@@ -156,7 +165,11 @@
         var answer = document.getElementById("answer").value;
         var subject = "Önskad maträtt";
         var body = "Jag önskar följande maträtt: " + answer;
-        window.location.href = "mailto:exempel@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        window.location.href = "mailto:carlssonneo20@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        document.getElementById("question-box").classList.add("hidden");
+    }
+
+    function closeQuestionBox() {
         document.getElementById("question-box").classList.add("hidden");
     }
 </script>
