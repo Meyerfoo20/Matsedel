@@ -26,7 +26,7 @@
       // Lägg till rätter i veckans matsedel
       function renderWeeklyMenu() {
         const weeklyMenu = document.getElementById("weekly-menu");
-        const selectedIds = [6, 3, 1, 5]; // Bestäm vilka rätter som ska visas (ID:n)
+        const selectedIds = [8, 3, 12, 6]; // Bestäm vilka rätter som ska visas (ID:n)
         const selectedDishes = getDishesById(selectedIds);
   
         selectedDishes.forEach(dish => {
