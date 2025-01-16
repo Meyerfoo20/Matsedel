@@ -16,7 +16,6 @@
         { id: 14, title: "Chili con carne", img: "Bilder/chili-con-carne.jpg", time: "Snabb" },
         { id: 15, title: "Ugnstekt Falukorv", img: "Bilder/falukorv-i-ugn.jpg", time: "Medel" },
         { id: 16, title: "Pannbiff", img: "Bilder/pannbiff.jpg", time: "Medel" },
-        //{ id: 1, title: "", img: "Bilder/", time: "Medel" },
       ];
   
       // Funktion för att hämta specifika rätter baserat på ID
@@ -34,7 +33,7 @@
           const dishElement = document.createElement("div");
           dishElement.className = "menu-item";
           dishElement.innerHTML = `
-            <a href="${dish.title}"><img src="${dish.img}" alt="${dish.title}"></a>
+            <a href="https://www.arla.se/recept/?search=${dish.title}/"><img src="${dish.img}" alt="${dish.title}"></a>
             <h2>${dish.title}</h2>
             <p><i class="fas fa-clock"></i> ${dish.time}</p>
           `;
