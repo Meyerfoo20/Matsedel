@@ -13,8 +13,10 @@
         { id: 11, title: "Lasagne", img: "Bilder/lasagne.jpg", time: "Medel" },
         { id: 12, title: "Butter Chicken [Indisk]", img: "Bilder/butter-chicken.jpg", time: "Medel" },
         { id: 13, title: "Reuben Sandwich", img: "Bilder/reuben-sandwich.jpg", time: "Medel" },
-        { id: 14, title: "", img: "Bilder/", time: "Medel" },
-        { id: 15, title: "", img: "Bilder/", time: "Medel" },
+        { id: 14, title: "Chili con carne", img: "Bilder/chili-con-carne.jpg", time: "Snabb" },
+        { id: 15, title: "Ugnstekt Falukorv", img: "Bilder/falukorv-i-ugn.jpg", time: "Medel" },
+        { id: 16, title: "Pannbiff", img: "Bilder/pannbiff.jpg", time: "Medel" },
+        //{ id: 1, title: "", img: "Bilder/", time: "Medel" },
       ];
   
       // Funktion för att hämta specifika rätter baserat på ID
