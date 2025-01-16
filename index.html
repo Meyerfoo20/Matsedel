@@ -155,6 +155,19 @@
         background-color: darkgreen;
     }
 
+    .request-section-bg {
+        background-color: #afd1b6;
+        padding: 50px;
+    }
+
+    .search-section input {
+        padding: 15px 30px;
+        background: transparent;
+        color: green;
+        border: 2px solid green;
+        border-radius: 5px 0px;
+    }
+
 
   </style>
 </head>
@@ -173,7 +186,15 @@
   </div>
 
   <center>
-  <div class="search-section">
+  <div class="request-section-bg">
+    <div class="request-section">
+        <h2>Önska en maträtt</h2>
+        <input type="text" id="dish-request-input" placeholder="Skriv din maträtt här...">
+        <button onclick="submitDishRequest()">Skicka</button>
+    </div>
+  </div>
+  
+  <div class="search-section" style="margin-top: 25px;">
     <input type="text" id="search-input" placeholder="Sök recept..." oninput="filterRecipes()">
   </div>
   <div class="recipe-section">
@@ -181,12 +202,6 @@
     <div class="recipe-container" id="all-recipes">
       <!-- Rätter kommer att läggas till här av JavaScript -->
     </div>
-  </div>
-
-  <div class="request-section">
-    <h2>Önska en maträtt</h2>
-    <input type="text" id="dish-request-input" placeholder="Skriv din maträtt här...">
-    <button onclick="submitDishRequest()">Skicka</button>
   </div>
   
 </center>
