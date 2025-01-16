@@ -108,3 +108,29 @@ function renderAllRecipes() {
   // Kör funktionerna vid sidladdning
   renderAllRecipes();
   
+// Initiera EmailJS med din Public API Key
+emailjs.init("M8hlcCoiJItfe70PT");
+
+function submitDishRequest() {
+  const dishRequestInput = document.getElementById("dish-request-input"); // Hämta input-fältet
+  const requestedDish = dishRequestInput.value.trim(); // Rensa eventuella mellanslag
+
+  if (requestedDish) {
+    // Skicka e-post via EmailJS
+    emailjs.send("service_mlkg1qt", "template_39npol2", {
+      dish_request: requestedDish, // Variabel som matchar din template
+    })
+    .then(response => {
+      alert(`Tack för din önskan! Maträtten "${requestedDish}" har skickats.`);
+      console.log("E-post skickades:", response.status, response.text);
+    })
+    .catch(error => {
+      console.error("Ett fel uppstod vid e-postsändning:", error);
+      alert("Kunde inte skicka önskan. Kontrollera inställningarna och försök igen.");
+    });
+
+    dishRequestInput.value = ""; // Töm input-fältet efter skickad önskan
+  } else {
+    alert("Vänligen skriv in en maträtt innan du skickar!");
+  }
+}

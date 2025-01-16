@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matsedel</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "M8hlcCoiJItfe70PT",
+        });
+    })();
+    </script>
   <style>
     body {
       font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -183,37 +193,7 @@
   
 
 
+
 <script src="script.js"></script>
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-// Initiera EmailJS med din Public Key
-emailjs.init("ummkAJRPRpOosx27r");
-
-function submitDishRequest() {
-  const dishRequestInput = document.getElementById("dish-request-input"); // Hämta input-fältet
-  const requestedDish = dishRequestInput.value.trim(); // Rensa onödiga mellanslag
-
-  if (requestedDish) {
-    // Skicka e-post via EmailJS
-    emailjs.send("service_mlkg1qt", "template_39npol2", {
-      dish_request: requestedDish, // Variabel som skickas till mallen
-    })
-    .then(response => {
-      alert(`Tack för din önskan! Vi har skickat maträtten "${requestedDish}" till vår e-post.`);
-      console.log("E-post skickades:", response.status, response.text);
-    })
-    .catch(error => {
-      console.error("Ett fel uppstod vid e-postsändning:", error);
-      alert("Kunde inte skicka önskan. Kontrollera inställningarna och försök igen.");
-    });
-
-    dishRequestInput.value = ""; // Rensa input-fältet efter skickad önskan
-  } else {
-    alert("Vänligen skriv in en maträtt innan du skickar!");
-  }
-}
-
-</script>
-
 </body>
 </html>
