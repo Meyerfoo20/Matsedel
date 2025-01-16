@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matsedel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-weight: bolder;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: green;
+      background-color: #f0fffd;
+    }
+
+    /* Responsiv */
+    @media (max-width: 768px) {
+    .menu-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .menu-item img {
+        height: 120px;
+    }
+
+    .recipe-section {
+        margin: 0 20px;
+    }
+
+    .menu-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    }
+
+    @media (max-width: 480px) {
+    .menu-container {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-item img {
+        height: 100px;
+    }
+
+    .recipe-section {
+        margin: 0 10px;
+    }
+    }
+
+    /* Navbar styling */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo img {
+      width: 100px;
+    }
+
+    /* Weekly menu section styling */
+    .menu-section {
+      padding: 20px;
+    }
+
+    .menu-section h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-item {
+      border: 2px solid green;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .menu-item h2 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .menu-item p {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .recipe-section {
+        margin: 0px 100px;
+    }
+    .menu-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .request-section {
+        text-align: center;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #e6fffa;
+        border: 2px solid green;
+        border-radius: 8px;
+        max-width: 500px;
+    }
+
+    .request-section input {
+        padding: 10px;
+        width: 80%;
+        max-width: 300px;
+        margin: 10px 0;
+        border: 1px solid green;
+        border-radius: 4px;
+    }
+
+    .request-section button {
+        padding: 10px 20px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .request-section button:hover {
+        background-color: darkgreen;
+    }
+
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"><img src="logo.png"></div>
+  </div>
+
+  <!-- Weekly menu section -->
+  <div class="menu-section">
+    <h1>Veckans Matsedel</h1>
+    <div class="menu-container" id="weekly-menu">
+      <!-- Rätter kommer att läggas till här av JavaScript -->
+    </div>
+  </div>
+
+  <center>
+  <div class="search-section">
+    <input type="text" id="search-input" placeholder="Sök recept..." oninput="filterRecipes()">
+  </div>
+  <div class="recipe-section">
+    <h1>Alla Recept</h1>
+    <div class="recipe-container" id="all-recipes">
+      <!-- Rätter kommer att läggas till här av JavaScript -->
+    </div>
+  </div>
+
+  <div class="request-section">
+    <h2>Önska en maträtt</h2>
+    <input type="text" id="dish-request-input" placeholder="Skriv din maträtt här...">
+    <button onclick="submitDishRequest()">Skicka</button>
+  </div>
+  
+</center>
+  
+
+
+<script src="script.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+// Initiera EmailJS med din Public Key
+emailjs.init("ummkAJRPRpOosx27r");
+
+function submitDishRequest() {
+  const dishRequestInput = document.getElementById("dish-request-input"); // Hämta input-fältet
+  const requestedDish = dishRequestInput.value.trim(); // Rensa onödiga mellanslag
+
+  if (requestedDish) {
+    // Skicka e-post via EmailJS
+    emailjs.send("service_mlkg1qt", "template_39npol2", {
+      dish_request: requestedDish, // Variabel som skickas till mallen
+    })
+    .then(response => {
+      alert(`Tack för din önskan! Vi har skickat maträtten "${requestedDish}" till vår e-post.`);
+      console.log("E-post skickades:", response.status, response.text);
+    })
+    .catch(error => {
+      console.error("Ett fel uppstod vid e-postsändning:", error);
+      alert("Kunde inte skicka önskan. Kontrollera inställningarna och försök igen.");
+    });
+
+    dishRequestInput.value = ""; // Rensa input-fältet efter skickad önskan
+  } else {
+    alert("Vänligen skriv in en maträtt innan du skickar!");
+  }
+}
+
+</script>
+
+</body>
+</html>
