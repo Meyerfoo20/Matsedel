@@ -16,6 +16,7 @@
         { id: 14, title: "Chili con carne", img: "Bilder/chili-con-carne.jpg", time: "Snabb" },
         { id: 15, title: "Ugnstekt Falukorv", img: "Bilder/falukorv-i-ugn.jpg", time: "Medel" },
         { id: 16, title: "Pannbiff", img: "Bilder/pannbiff.jpg", time: "Medel" },
+        { id: 17, title: "Fiskgratäng", img: "Bilder/fiskgratang.jpg", time: "Medel" },
       ];
   
       // Funktion för att hämta specifika rätter baserat på ID
@@ -26,7 +27,7 @@
       // Lägg till rätter i veckans matsedel
       function renderWeeklyMenu() {
         const weeklyMenu = document.getElementById("weekly-menu");
-        const selectedIds = [14, 16, 15, 2]; 
+        const selectedIds = [17, 9, 11, 7]; 
         const selectedDishes = getDishesById(selectedIds);
   
         selectedDishes.forEach(dish => {
