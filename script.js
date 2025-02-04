@@ -17,6 +17,8 @@
         { id: 15, title: "Ugnstekt Falukorv", img: "Bilder/falukorv-i-ugn.jpg", time: "Medel" },
         { id: 16, title: "Pannbiff", img: "Bilder/pannbiff.jpg", time: "Medel" },
         { id: 17, title: "Fiskgratäng", img: "Bilder/fiskgratang.jpg", time: "Medel" },
+        { id: 18, title: "Köttbullar", img: "Bilder/kottbullar.jpg", time: "Medel" },
+        { id: 19, title: "Pizza", img: "Bilder/pizza.jpg", time: "Lång" },
       ];
   
       // Funktion för att hämta specifika rätter baserat på ID
@@ -27,7 +29,7 @@
       // Lägg till rätter i veckans matsedel
       function renderWeeklyMenu() {
         const weeklyMenu = document.getElementById("weekly-menu");
-        const selectedIds = [17, 9, 11, 7]; 
+        const selectedIds = [17, 18, 11, 7]; 
         const selectedDishes = getDishesById(selectedIds);
   
         selectedDishes.forEach(dish => {
